@@ -1,0 +1,76 @@
+html, body, ul, ol, li,dl, dd, dt, p, canvas,h1,button, h2, h3, h4, h5, h6,span, form, fieldset, legend, img,figure,select,option,figcaption,input,textarea,div,a,i,header,table,tbody,thead,tr,th,td {
+    margin: 0;
+    padding: 0;
+    box-sizing:  border-box;
+    text-align: center;
+    font-weight: normal;
+}
+fieldset, img ,figure,figcaption {
+    border: none;
+}
+i, cite, em, var, address, dfn {
+    font-style: normal;
+}
+
+address, caption, cite, code, dfn, th, var {
+    font-style: normal;
+    font-weight: normal;
+}
+body {
+    font: 16px "Hiragino Sans GB", "Microsoft YaHei", '微软雅黑', arial, Tahoma, SimSun, sans-serif;
+    background-color: #f5f5f5;
+}
+
+img {
+    outline: none;
+    border-style: none;
+}
+
+ul,ol {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+i {
+    font-style: normal;
+}
+
+.clearfloat {
+    *zoom: 1;
+    &:after {
+        content: "\200B";
+        display: block;
+        height: 0;
+        clear: both;
+    }
+}
+input {
+    outline: none;
+}
+
+input focus {
+    outline: none;
+}
+
+input {
+    background: none;
+    outline: none;
+    border: 0px;
+}
+button {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-tap-highlight-color: transparent;
+}
+*, *:before, *:after {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+select, input, textarea {
+    border: 1px solid black;
+    outline: none;
+    -webkit-tap-highlight-color: #000000;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    filter: chroma(color=#000000);
+}
