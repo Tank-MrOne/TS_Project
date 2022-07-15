@@ -2,16 +2,16 @@ import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router';
 Vue.use(VueRouter as any)
 import HomePage from '@/components/HomePage.vue'
-const routes: RouteConfig[] = [
+const routes = [
   {
     path: '/',
     name: 'home',
     component: HomePage,
   },
-  // {
-  //   path: '/loveFund/*',
-  //   redirect:'/loveFund'
-  // },
+  {
+    path: '*',
+    redirect:'/'
+  },
 ];
 
 const router = new VueRouter({
