@@ -4,42 +4,7 @@ function resolve(dir) {
     return path.join(__dirname, dir)
 }
 
-const _publicPathMap = {
-    development: '/',
-    // production: '//j1.xxx.com.cn/git/ep-fe/',
-    // preview: '//j1.xxx.com.cn/git/ep-fe/',
-    // test: '//j1.xxx.com.cn/git/ep-fe/',
-}
 
-
-// 获取 _publicPath
-function getPublicPath(i = { useIpHost: false, ip: '' }, p = '') {
-    // 保底
-    let path = _publicPathMap[process.env.NODE_ENV] || '/'
-    // 命令行配置（优先级：2）
-    if (p) {
-        if (_publicPathMap[p]) {
-            path = _publicPathMap[p]
-        } else {
-            if (p !== true) {
-                path = p
-            }
-        }
-    }
-    // 使用ip（优先级：1）
-    if (i.useIpHost) {
-        path = path.replace('j1.58cdn.com.cn', i.ip)
-    }
-    // 开发配置
-    if (process.env.NODE_ENV === 'development') {
-        path = _publicPathMap['development']
-    }
-    // 补 /
-    if (path.slice(-1) !== '/') {
-        path += '/'
-    }
-    return path
-}
 
 // paddingZero
 function pz(val, len = 2) {
@@ -59,6 +24,7 @@ const _t = new Date()
 const _hash = '' + _t.getFullYear() + pz(_t.getMonth() + 1) + pz(_t.getDate()) + pz(_t.getHours()) + pz(_t.getMinutes()) + pz(_t.getSeconds()) + pz(_t.getMilliseconds(), 3)
 
 module.exports = {
+    publicPath: process.env.NODE_ENV === 'development' ? '/' : './',
     outputDir: 'dist',
     assetsDir: 'static',
     lintOnSave: process.env.NODE_ENV === 'development',
@@ -102,23 +68,23 @@ module.exports = {
     },
     chainWebpack(config) {
         config.plugin('html').tap(args => {
-            // args[0].title = '审批'
-            args[0].title = '\u200E'
+            args[0].title = '永乐'
+            // args[0].title = '\u200E'
             return args
         })
         config.plugins.delete('preload')
         config.plugins.delete('prefetch')
 
-        if (process.env.NODE_ENV === 'production') {
-            // 清除css，js版本号
-            config.output.filename(`static/js/[name].${_hash}.js`).end()
-            config.output.chunkFilename(`static/js/[name].${_hash}.js`).end()
-            // 为生产环境修改配置...
-            config.plugin('extract-css').tap(() => [{
-                filename: `static/css/[name].${_hash}.css`,
-                // chunkFilename: `static/css/[name].${_hash}.css`
-            }])
-        }
+        // if (process.env.NODE_ENV === 'production') {
+        //     // 清除css，js版本号
+        //     config.output.filename(`static/js/[name].${_hash}.js`).end()
+        //     config.output.chunkFilename(`static/js/[name].${_hash}.js`).end()
+        //     // 为生产环境修改配置...
+        //     config.plugin('extract-css').tap(() => [{
+        //         filename: `static/css/[name].${_hash}.css`,
+        //         // chunkFilename: `static/css/[name].${_hash}.css`
+        //     }])
+        // }
 
         const imagesRule = config.module.rule('images')
         imagesRule
@@ -139,7 +105,7 @@ module.exports = {
             .end()
 
         // https://webpack.js.org/configuration/devtool/#development
-        config.when(process.env.NODE_ENV === 'development', (config) => config.devtool('cheap-source-map'))
+        // config.when(process.env.NODE_ENV === 'development', (config) => config.devtool('cheap-source-map'))
     },
     pluginOptions: {
         'style-resources-loader': {

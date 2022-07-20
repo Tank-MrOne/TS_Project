@@ -1,0 +1,24 @@
+body {
+    // --themColor     : #202124;
+    --themColor     : #000;
+    --hoverThemColor: #46474b;
+    --themTextColor : rgba(207, 173, 74, 1)
+}
+
+// 隐藏滚动条，只兼容谷歌与火狐
+div,
+body {
+    &::-webkit-scrollbar {
+        width: 0;
+    }
+
+    scrollbar-width: none;
+}
+
+.el-message {
+    z-index: 9999 !important;
+}
+
+.el-message-box__wrapper {
+    z-index: 9999 !important;
+}
